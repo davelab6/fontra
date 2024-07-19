@@ -641,8 +641,6 @@ registerVisualizationLayerDefinition({
       fontGuideline: selectedFontGuidelineIndices,
     } = parseSelection(model.selection);
 
-    // TODO: Font Guidelines
-
     // Under layer
     context.fillStyle = parameters.underColor;
     for (const i of selectedGuidelineIndices || []) {
@@ -696,6 +694,81 @@ registerVisualizationLayerDefinition({
     context.fillStyle = parameters.selectedColor;
     for (const i of selectedGuidelineIndices || []) {
       const guideline = glyph.guidelines[i];
+      if (!guideline) {
+        continue;
+      }
+      if (guideline.locked) {
+        _drawLockIcon(
+          context,
+          guideline.x - parameters.iconSize / 2,
+          guideline.y + parameters.iconSize / 2,
+          parameters.selectedColor,
+          parameters.iconSize
+        );
+      } else {
+        fillRoundNode(context, guideline, smoothSize);
+      }
+    }
+
+    // TODO: Font Guidelines
+    console.log("hoveredFontGuidelineIndices: ", hoveredFontGuidelineIndices);
+    console.log("selectedFontGuidelineIndices: ", selectedFontGuidelineIndices);
+    if (!model.fontSourceInstance) {
+      return;
+    }
+
+    // Under layer
+    for (const i of selectedFontGuidelineIndices || []) {
+      const guideline = model.fontSourceInstance.guidelines[i];
+      if (!guideline) {
+        continue;
+      }
+      if (guideline.locked) {
+        _drawLockIcon(
+          context,
+          guideline.x - parameters.iconSize / 2,
+          guideline.y + parameters.iconSize / 2,
+          parameters.selectedColor,
+          parameters.iconSize
+        );
+      } else {
+        fillRoundNode(context, guideline, smoothSize);
+      }
+    }
+
+    // Hovered guideline
+    context.strokeStyle = parameters.hoveredColor;
+    context.lineWidth = parameters.strokeWidth;
+    for (const i of hoveredFontGuidelineIndices || []) {
+      const guideline = model.fontSourceInstance.guidelines[i];
+      if (!guideline) {
+        continue;
+      }
+      if (guideline.locked) {
+        const drawIcons = [
+          [parameters.hoveredColor, 11],
+          [parameters.underColorIcon, 7],
+          [parameters.hoveredColorIcon, 2],
+        ];
+        for (const [color, strokeSize] of drawIcons) {
+          _drawLockIcon(
+            context,
+            guideline.x - parameters.iconSize / 2,
+            guideline.y + parameters.iconSize / 2,
+            color,
+            parameters.iconSize,
+            strokeSize
+          );
+        }
+      } else {
+        strokeRoundNode(context, guideline, smoothSize + parameters.hoverStrokeOffset);
+      }
+    }
+
+    // Selected guideline
+    context.fillStyle = parameters.selectedColor;
+    for (const i of selectedFontGuidelineIndices || []) {
+      const guideline = model.fontSourceInstance.guidelines[i];
       if (!guideline) {
         continue;
       }

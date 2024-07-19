@@ -548,10 +548,14 @@ export class SceneModel {
     }
 
     // TODO: Font Guidelines
-    // const fontGuidelineSelection = this.fontGuidelineSelectionAtPoint(point, size);
-    // if (fontGuidelineSelection.size) {
-    //   return { selection: fontGuidelineSelection };
-    // }
+    const fontGuidelineSelection = this.fontGuidelineSelectionAtPoint(
+      point,
+      size,
+      parsedCurrentSelection
+    );
+    if (fontGuidelineSelection.size) {
+      return { selection: fontGuidelineSelection };
+    }
 
     return {};
   }
@@ -721,8 +725,31 @@ export class SceneModel {
   }
 
   // TODO: Font Guidelines
-  //fontGuidelineSelectionAtPoint(point, size) {
-  // }
+  fontGuidelineSelectionAtPoint(point, size, parsedCurrentSelection) {
+    const positionedGlyph = this.getSelectedPositionedGlyph();
+    const location = {
+      ...this.sceneSettings.fontLocationSourceMapped,
+      ...this._glyphLocations[positionedGlyph.glyphName],
+    };
+
+    const fontSourceInstance =
+      this.fontController.fontSourcesInstancer.instantiate(location);
+
+    const guidelines = fontSourceInstance.guidelines;
+    const x = point.x - positionedGlyph.x;
+    const y = point.y - positionedGlyph.y;
+    const selRect = centeredRect(x, y, size);
+    const indices = parsedCurrentSelection
+      ? parsedCurrentSelection.guideline || []
+      : [...range(guidelines.length)];
+    for (const i of reversed(indices)) {
+      const guideline = guidelines[i];
+      if (guideline && pointInRect(guideline.x, guideline.y, selRect)) {
+        return new Set([`fontGuideline/${i}`]);
+      }
+    }
+    return new Set([]);
+  }
 
   backgroundImageSelectionAtPoint(point) {
     return this._backgroundImageSelectionAtPointOrRect(point);
