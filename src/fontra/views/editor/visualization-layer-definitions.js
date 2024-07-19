@@ -524,7 +524,13 @@ registerVisualizationLayerDefinition({
       _drawGuideline(context, parameters, guideline);
     }
 
-    // TODO: Font Guidelines
+    // Draw font guidelines
+    if (!model.fontSourceInstance) {
+      return;
+    }
+    for (const guideline of model.fontSourceInstance.guidelines || []) {
+      _drawGuideline(context, parameters, guideline);
+    }
   },
 });
 
