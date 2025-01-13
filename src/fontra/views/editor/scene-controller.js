@@ -1,22 +1,25 @@
-import { registerAction } from "../core/actions.js";
-import { recordChanges } from "../core/change-recorder.js";
+import { EditBehaviorFactory } from "./edit-behavior.js";
+import { SceneModel, getSelectedGlyphName } from "./scene-model.js";
+import { registerAction } from "/core/actions.js";
+import { recordChanges } from "/core/change-recorder.js";
 import {
   ChangeCollector,
   applyChange,
   consolidateChanges,
   hasChange,
-} from "../core/changes.js";
-import { decomposeComponents } from "../core/glyph-controller.js";
-import { glyphLinesFromText, textFromGlyphLines } from "../core/glyph-lines.js";
-import { MouseTracker } from "../core/mouse-tracker.js";
-import { ObservableController } from "../core/observable-object.js";
+} from "/core/changes.js";
+import { decomposeComponents } from "/core/glyph-controller.js";
+import { glyphLinesFromText, textFromGlyphLines } from "/core/glyph-lines.js";
+import { translate, translatePlural } from "/core/localization.js";
+import { MouseTracker } from "/core/mouse-tracker.js";
+import { ObservableController } from "/core/observable-object.js";
 import {
   connectContours,
   scalePoint,
   splitPathAtPointIndices,
-} from "../core/path-functions.js";
-import { equalRect, offsetRect, rectAddMargin, rectRound } from "../core/rectangle.js";
-import { difference, isSuperset, lenientIsEqualSet, union } from "../core/set-ops.js";
+} from "/core/path-functions.js";
+import { equalRect, offsetRect, rectAddMargin, rectRound } from "/core/rectangle.js";
+import { difference, isSuperset, lenientIsEqualSet, union } from "/core/set-ops.js";
 import {
   arrowKeyDeltas,
   assert,
@@ -27,12 +30,9 @@ import {
   reversed,
   withTimeout,
   zip,
-} from "../core/utils.js";
-import { VarPackedPath, packContour } from "../core/var-path.js";
-import * as vector from "../core/vector.js";
-import { EditBehaviorFactory } from "./edit-behavior.js";
-import { SceneModel, getSelectedGlyphName } from "./scene-model.js";
-import { translate, translatePlural } from "/core/localization.js";
+} from "/core/utils.js";
+import { VarPackedPath, packContour } from "/core/var-path.js";
+import * as vector from "/core/vector.js";
 import { dialog, message } from "/web-components/modal-dialog.js";
 
 export class SceneController {

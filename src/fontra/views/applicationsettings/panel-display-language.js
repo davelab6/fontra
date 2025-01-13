@@ -1,7 +1,7 @@
-import * as html from "../core/html-utils.js";
-import { addStyleSheet } from "../core/html-utils.js";
-import { languageController, languages, translate } from "../core/localization.js";
 import { BaseInfoPanel } from "./panel-base.js";
+import * as html from "/core/html-utils.js";
+import { addStyleSheet } from "/core/html-utils.js";
+import { languageController, languages, translate } from "/core/localization.js";
 
 addStyleSheet(`
   .fontra-ui-display-language-panel-card {

@@ -1,7 +1,6 @@
-import { difference, isSuperset, union } from "../core/set-ops.js";
-import { subVectors } from "../core/vector.js";
 import { translate } from "/core/localization.js";
 import { rectToPoints } from "/core/rectangle.js";
+import { difference, isSuperset, union } from "/core/set-ops.js";
 import { decomposedToTransform } from "/core/transform.js";
 import {
   chain,
@@ -14,6 +13,7 @@ import {
   unionIndexSets,
   withSavedState,
 } from "/core/utils.js";
+import { subVectors } from "/core/vector.js";
 
 export const visualizationLayerDefinitions = [];
 

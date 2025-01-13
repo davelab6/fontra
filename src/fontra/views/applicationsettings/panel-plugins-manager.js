@@ -1,6 +1,6 @@
-import * as html from "../core/html-utils.js";
-import { addStyleSheet } from "../core/html-utils.js";
 import { BaseInfoPanel } from "./panel-base.js";
+import * as html from "/core/html-utils.js";
+import { addStyleSheet } from "/core/html-utils.js";
 
 addStyleSheet(`
   .fontra-ui-plugins-manager-panel-card {

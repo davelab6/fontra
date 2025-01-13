@@ -1,8 +1,8 @@
-import * as rectangle from "../core/rectangle.js";
-import { commandKeyProperty, range } from "../core/utils.js";
-import { VarPackedPath, packContour } from "../core/var-path.js";
 import { BaseTool, shouldInitiateDrag } from "./edit-tools-base.js";
 import { registerVisualizationLayerDefinition } from "./visualization-layer-definitions.js";
+import * as rectangle from "/core/rectangle.js";
+import { commandKeyProperty, range } from "/core/utils.js";
+import { VarPackedPath, packContour } from "/core/var-path.js";
 
 export class ShapeTool {
   identifier = "shape-tool";

@@ -1,4 +1,5 @@
-import { pointInConvexPolygon, rectIntersectsPolygon } from "../core/convex-hull.js";
+import { pointInConvexPolygon, rectIntersectsPolygon } from "/core/convex-hull.js";
+import { loaderSpinner } from "/core/loader-spinner.js";
 import {
   centeredRect,
   insetRect,
@@ -10,18 +11,17 @@ import {
   rectToPoints,
   sectRect,
   unionRect,
-} from "../core/rectangle.js";
-import { difference, isEqualSet, union, updateSet } from "../core/set-ops.js";
+} from "/core/rectangle.js";
+import { difference, isEqualSet, union, updateSet } from "/core/set-ops.js";
+import { decomposedToTransform } from "/core/transform.js";
 import {
   consolidateCalls,
   enumerate,
   parseSelection,
   range,
   reversed,
-} from "../core/utils.js";
-import * as vector from "../core/vector.js";
-import { loaderSpinner } from "/core/loader-spinner.js";
-import { decomposedToTransform } from "/core/transform.js";
+} from "/core/utils.js";
+import * as vector from "/core/vector.js";
 
 export class SceneModel {
   constructor(

@@ -1,8 +1,8 @@
-import { applicationSettingsController } from "../core/application-settings.js";
-import * as html from "../core/html-utils.js";
-import { addStyleSheet } from "../core/html-utils.js";
-import { translate } from "../core/localization.js";
 import { BaseInfoPanel } from "./panel-base.js";
+import { applicationSettingsController } from "/core/application-settings.js";
+import * as html from "/core/html-utils.js";
+import { addStyleSheet } from "/core/html-utils.js";
+import { translate } from "/core/localization.js";
 
 addStyleSheet(`
   .fontra-ui-clipboard-panel-card {

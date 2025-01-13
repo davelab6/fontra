@@ -1,5 +1,5 @@
-import { registerAction } from "../core/actions.js";
 import Panel from "./panel.js";
+import { registerAction } from "/core/actions.js";
 
 import { getSelectedGlyphInfo } from "./scene-model.js";
 import {
@@ -18,12 +18,7 @@ import { dialog, message } from "/web-components/modal-dialog.js";
 import "/web-components/range-slider.js";
 import { UIList } from "/web-components/ui-list.js";
 
-import "/third-party/lib-font/inflate.js";
-import "/third-party/lib-font/unbrotli.js";
-
-// lib-font expects its dependencies to be imported first. Prettier moves the imports.
-// prettier-ignore: organizeImportsSkipDestructiveCodeActions
-import { Font } from "/third-party/lib-font.js";
+import { Font } from "/core/lib-font.js";
 
 import { registerVisualizationLayerDefinition } from "./visualization-layer-definitions.js";
 import { translate, translatePlural } from "/core/localization.js";

@@ -1,4 +1,3 @@
-import { getClassSchema } from "../core/classes.js";
 import {
   applyChange,
   collectChangePaths,
@@ -6,6 +5,7 @@ import {
   filterChangePattern,
   matchChangePattern,
 } from "./changes.js";
+import { getClassSchema } from "./classes.js";
 import { getGlyphMapProxy, makeCharacterMapFromGlyphMap } from "./cmap.js";
 import { CrossAxisMapping } from "./cross-axis-mapping.js";
 import { FontSourcesInstancer } from "./font-sources-instancer.js";

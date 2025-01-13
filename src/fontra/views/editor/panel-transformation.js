@@ -1,8 +1,8 @@
-import { registerAction } from "../core/actions.js";
-import { Backend } from "../core/backend-api.js";
-import { ChangeCollector, applyChange, consolidateChanges } from "../core/changes.js";
 import { EditBehaviorFactory } from "./edit-behavior.js";
 import Panel from "./panel.js";
+import { registerAction } from "/core/actions.js";
+import { Backend } from "/core/backend-api.js";
+import { ChangeCollector, applyChange, consolidateChanges } from "/core/changes.js";
 import * as html from "/core/html-utils.js";
 import { translate } from "/core/localization.js";
 import {

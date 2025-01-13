@@ -1,19 +1,3 @@
-import { consolidateChanges } from "../core/changes.js";
-import { polygonIsConvex } from "../core/convex-hull.js";
-import {
-  Transform,
-  decomposedToTransform,
-  prependTransformToDecomposed,
-} from "../core/transform.js";
-import {
-  assert,
-  enumerate,
-  parseSelection,
-  reversed,
-  unionIndexSets,
-} from "../core/utils.js";
-import { copyBackgroundImage, copyComponent } from "../core/var-glyph.js";
-import * as vector from "../core/vector.js";
 import {
   ANY,
   NIL,
@@ -25,6 +9,22 @@ import {
   buildPointMatchTree,
   findPointMatch,
 } from "./edit-behavior-support.js";
+import { consolidateChanges } from "/core/changes.js";
+import { polygonIsConvex } from "/core/convex-hull.js";
+import {
+  Transform,
+  decomposedToTransform,
+  prependTransformToDecomposed,
+} from "/core/transform.js";
+import {
+  assert,
+  enumerate,
+  parseSelection,
+  reversed,
+  unionIndexSets,
+} from "/core/utils.js";
+import { copyBackgroundImage, copyComponent } from "/core/var-glyph.js";
+import * as vector from "/core/vector.js";
 
 export class EditBehaviorFactory {
   constructor(instance, selection, enableScalingEdit = false) {

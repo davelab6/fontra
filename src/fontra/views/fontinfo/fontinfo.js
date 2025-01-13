@@ -1,9 +1,9 @@
-import * as html from "../core/html-utils.js";
 import { AxesPanel } from "./panel-axes.js";
 import { CrossAxisMappingPanel } from "./panel-cross-axis-mapping.js";
 import { DevelopmentStatusDefinitionsPanel } from "./panel-development-status-definitions.js";
 import { FontInfoPanel } from "./panel-font-info.js";
 import { SourcesPanel } from "./panel-sources.js";
+import * as html from "/core/html-utils.js";
 import { translate } from "/core/localization.js";
 import { ViewController } from "/core/view-controller.js";
 

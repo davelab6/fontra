@@ -1,23 +1,39 @@
+import { CJKDesignFrame } from "./cjk-design-frame.js";
+import { HandTool } from "./edit-tools-hand.js";
+import { KnifeTool } from "./edit-tools-knife.js";
+import { PenTool } from "./edit-tools-pen.js";
+import { PointerTools } from "./edit-tools-pointer.js";
+import { PowerRulerTool } from "./edit-tools-power-ruler.js";
+import { ShapeTool } from "./edit-tools-shape.js";
+import { SceneController } from "./scene-controller.js";
+import { MIN_SIDEBAR_WIDTH, Sidebar } from "./sidebar.js";
+import {
+  allGlyphsCleanVisualizationLayerDefinition,
+  visualizationLayerDefinitions,
+} from "./visualization-layer-definitions.js";
+import { VisualizationLayers } from "./visualization-layers.js";
 import {
   canPerformAction,
   doPerformAction,
   getActionIdentifierFromKeyEvent,
   registerAction,
   registerActionCallbacks,
-} from "../core/actions.js";
-import { Backend } from "../core/backend-api.js";
-import { CanvasController } from "../core/canvas-controller.js";
-import { recordChanges } from "../core/change-recorder.js";
-import { applyChange } from "../core/changes.js";
-import { FontController } from "../core/font-controller.js";
-import { staticGlyphToGLIF } from "../core/glyph-glif.js";
-import { pathToSVG } from "../core/glyph-svg.js";
-import { loaderSpinner } from "../core/loader-spinner.js";
-import { ObservableController } from "../core/observable-object.js";
+} from "/core/actions.js";
+import { Backend } from "/core/backend-api.js";
+import { CanvasController } from "/core/canvas-controller.js";
+import { recordChanges } from "/core/change-recorder.js";
+import { applyChange } from "/core/changes.js";
+import { FontController } from "/core/font-controller.js";
+import { makeFontraMenuBar } from "/core/fontra-menus.js";
+import { staticGlyphToGLIF } from "/core/glyph-glif.js";
+import { pathToSVG } from "/core/glyph-svg.js";
+import * as html from "/core/html-utils.js";
+import { loaderSpinner } from "/core/loader-spinner.js";
+import { ObservableController } from "/core/observable-object.js";
 import {
   deleteSelectedPoints,
   filterPathByPointIndices,
-} from "../core/path-functions.js";
+} from "/core/path-functions.js";
 import {
   centeredRect,
   rectAddMargin,
@@ -27,10 +43,12 @@ import {
   rectScaleAroundCenter,
   rectSize,
   rectToArray,
-} from "../core/rectangle.js";
-import { SceneView } from "../core/scene-view.js";
-import { isSuperset } from "../core/set-ops.js";
-import { labeledCheckbox, labeledTextInput, pickFile } from "../core/ui-utils.js";
+} from "/core/rectangle.js";
+import { SceneView } from "/core/scene-view.js";
+import { isSuperset } from "/core/set-ops.js";
+import { themeController } from "/core/theme-settings.js";
+import { getDecomposedIdentity } from "/core/transform.js";
+import { labeledCheckbox, labeledTextInput, pickFile } from "/core/ui-utils.js";
 import {
   commandKeyProperty,
   enumerate,
@@ -50,30 +68,12 @@ import {
   scheduleCalls,
   writeObjectToURLFragment,
   writeToClipboard,
-} from "../core/utils.js";
-import { addItemwise, mulScalar, subItemwise } from "../core/var-funcs.js";
-import { StaticGlyph, VariableGlyph, copyComponent } from "../core/var-glyph.js";
-import { locationToString, makeSparseLocation } from "../core/var-model.js";
-import { VarPackedPath, joinPaths } from "../core/var-path.js";
-import { makeDisplayPath } from "../core/view-utils.js";
-import { CJKDesignFrame } from "./cjk-design-frame.js";
-import { HandTool } from "./edit-tools-hand.js";
-import { KnifeTool } from "./edit-tools-knife.js";
-import { PenTool } from "./edit-tools-pen.js";
-import { PointerTools } from "./edit-tools-pointer.js";
-import { PowerRulerTool } from "./edit-tools-power-ruler.js";
-import { ShapeTool } from "./edit-tools-shape.js";
-import { SceneController } from "./scene-controller.js";
-import { MIN_SIDEBAR_WIDTH, Sidebar } from "./sidebar.js";
-import {
-  allGlyphsCleanVisualizationLayerDefinition,
-  visualizationLayerDefinitions,
-} from "./visualization-layer-definitions.js";
-import { VisualizationLayers } from "./visualization-layers.js";
-import { makeFontraMenuBar } from "/core/fontra-menus.js";
-import * as html from "/core/html-utils.js";
-import { themeController } from "/core/theme-settings.js";
-import { getDecomposedIdentity } from "/core/transform.js";
+} from "/core/utils.js";
+import { addItemwise, mulScalar, subItemwise } from "/core/var-funcs.js";
+import { StaticGlyph, VariableGlyph, copyComponent } from "/core/var-glyph.js";
+import { locationToString, makeSparseLocation } from "/core/var-model.js";
+import { VarPackedPath, joinPaths } from "/core/var-path.js";
+import { makeDisplayPath } from "/core/view-utils.js";
 import { MenuItemDivider, showMenu } from "/web-components/menu-panel.js";
 import { dialog, dialogSetup, message } from "/web-components/modal-dialog.js";
 import { parsePluginBasePath } from "/web-components/plugin-manager.js";

@@ -1,7 +1,3 @@
-import { translate } from "../core/localization.js";
-import { slicePaths } from "../core/path-functions.js";
-import { mapObjectValues, zip } from "../core/utils.js";
-import * as vector from "../core/vector.js";
 import { constrainHorVerDiag } from "./edit-behavior.js";
 import { BaseTool, shouldInitiateDrag } from "./edit-tools-base.js";
 import {
@@ -9,6 +5,10 @@ import {
   registerVisualizationLayerDefinition,
   strokeLine,
 } from "./visualization-layer-definitions.js";
+import { translate } from "/core/localization.js";
+import { slicePaths } from "/core/path-functions.js";
+import { mapObjectValues, zip } from "/core/utils.js";
+import * as vector from "/core/vector.js";
 
 export class KnifeTool extends BaseTool {
   iconPath = "/tabler-icons/slice.svg";

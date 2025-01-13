@@ -1,23 +1,23 @@
-import { recordChanges } from "../core/change-recorder.js";
-import * as html from "../core/html-utils.js";
-import { addStyleSheet } from "../core/html-utils.js";
-import { ObservableController } from "../core/observable-object.js";
-import * as svg from "../core/svg-utils.js";
+import { BaseInfoPanel } from "./panel-base.js";
+import { recordChanges } from "/core/change-recorder.js";
+import * as html from "/core/html-utils.js";
+import { addStyleSheet } from "/core/html-utils.js";
+import { translate } from "/core/localization.js";
+import { ObservableController } from "/core/observable-object.js";
+import * as svg from "/core/svg-utils.js";
 import {
   NumberFormatter,
   OptionalNumberFormatter,
   checkboxListCell,
   labeledTextInput,
   setupSortableList,
-} from "../core/ui-utils.js";
-import { enumerate, range, zip } from "../core/utils.js";
-import { piecewiseLinearMap } from "../core/var-model.js";
-import { IconButton } from "../web-components/icon-button.js"; // for <icon-button>
-import { UIList } from "../web-components/ui-list.js";
-import { BaseInfoPanel } from "./panel-base.js";
-import { translate } from "/core/localization.js";
+} from "/core/ui-utils.js";
+import { enumerate, range, zip } from "/core/utils.js";
+import { piecewiseLinearMap } from "/core/var-model.js";
 import "/web-components/add-remove-buttons.js";
+import { IconButton } from "/web-components/icon-button.js"; // for <icon-button>
 import { dialogSetup } from "/web-components/modal-dialog.js";
+import { UIList } from "/web-components/ui-list.js";
 
 const presetAxes = [
   {

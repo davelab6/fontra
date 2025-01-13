@@ -1,9 +1,9 @@
+import { FontOverviewNavigation } from "./panel-navigation.js";
 import {
   doPerformAction,
   getActionIdentifierFromKeyEvent,
   registerActionCallbacks,
-} from "../core/actions.js";
-import { FontOverviewNavigation } from "./panel-navigation.js";
+} from "/core/actions.js";
 import { makeFontraMenuBar } from "/core/fontra-menus.js";
 import { GlyphOrganizer } from "/core/glyph-organizer.js";
 import * as html from "/core/html-utils.js";

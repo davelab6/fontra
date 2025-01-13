@@ -1,9 +1,9 @@
-import { recordChanges } from "../core/change-recorder.js";
-import * as html from "../core/html-utils.js";
-import { addStyleSheet } from "../core/html-utils.js";
-import { enumerate, hexToRgba, range, rgbaToHex } from "../core/utils.js";
 import { BaseInfoPanel } from "./panel-base.js";
+import { recordChanges } from "/core/change-recorder.js";
+import * as html from "/core/html-utils.js";
+import { addStyleSheet } from "/core/html-utils.js";
 import { translate } from "/core/localization.js";
+import { enumerate, hexToRgba, range, rgbaToHex } from "/core/utils.js";
 import { message } from "/web-components/modal-dialog.js";
 
 const defaultStatusFieldDefinitions = {

@@ -1,8 +1,8 @@
-import * as html from "../core/html-utils.js";
-import { addStyleSheet } from "../core/html-utils.js";
-import { translate } from "../core/localization.js";
-import { themeController } from "../core/theme-settings.js";
 import { BaseInfoPanel } from "./panel-base.js";
+import * as html from "/core/html-utils.js";
+import { addStyleSheet } from "/core/html-utils.js";
+import { translate } from "/core/localization.js";
+import { themeController } from "/core/theme-settings.js";
 
 addStyleSheet(`
   .fontra-ui-theme-settings-panel-card {

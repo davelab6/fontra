@@ -1,17 +1,17 @@
-import { recordChanges } from "../core/change-recorder.js";
-import * as html from "../core/html-utils.js";
-import { addStyleSheet } from "../core/html-utils.js";
-import { translate } from "../core/localization.js";
-import { ObservableController } from "../core/observable-object.js";
+import { BaseInfoPanel } from "./panel-base.js";
+import { recordChanges } from "/core/change-recorder.js";
+import * as html from "/core/html-utils.js";
+import { addStyleSheet } from "/core/html-utils.js";
+import { translate } from "/core/localization.js";
+import { ObservableController } from "/core/observable-object.js";
 import {
   OptionalNumberFormatter,
   labelForElement,
   labeledCheckbox,
   labeledTextInput,
   textInput,
-} from "../core/ui-utils.js";
-import { enumerate, round } from "../core/utils.js";
-import { BaseInfoPanel } from "./panel-base.js";
+} from "/core/ui-utils.js";
+import { enumerate, round } from "/core/utils.js";
 import {
   locationToString,
   makeSparseLocation,

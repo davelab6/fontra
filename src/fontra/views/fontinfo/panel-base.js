@@ -1,6 +1,6 @@
-import { UndoStack, reverseUndoRecord } from "../core/font-controller.js";
-import * as html from "../core/html-utils.js";
-import { commandKeyProperty } from "../core/utils.js";
+import { UndoStack, reverseUndoRecord } from "/core/font-controller.js";
+import * as html from "/core/html-utils.js";
+import { commandKeyProperty } from "/core/utils.js";
 
 export class BaseInfoPanel {
   constructor(fontInfoController, panelElement) {
