@@ -4,7 +4,7 @@ export class HandTool extends BaseTool {
   iconPath = "/images/hand.svg";
   identifier = "hand-tool";
 
-  handleHover(event) {
+  handleHover(_event: MouseEvent) {
     this.setCursor();
   }
 
@@ -12,7 +12,7 @@ export class HandTool extends BaseTool {
     this.canvasController.canvas.style.cursor = "grab";
   }
 
-  async handleDrag(eventStream, initialEvent) {
+  async handleDrag(eventStream: MouseEvent[], initialEvent: MouseEvent) {
     const initialX = initialEvent.x;
     const initialY = initialEvent.y;
     const originalOriginX = this.canvasController.origin.x;

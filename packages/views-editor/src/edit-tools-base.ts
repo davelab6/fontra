@@ -1,5 +1,14 @@
+import { EditorController } from "./editor";
+
 export class BaseTool {
-  constructor(editor) {
+  editor: EditorController;
+  canvasController: any;
+  sceneController: any;
+  sceneModel: any;
+  sceneSettingsController: any;
+  sceneSettings: any;
+
+  constructor(editor: EditorController) {
     this.editor = editor;
     this.canvasController = editor.canvasController;
     this.sceneController = editor.sceneController;
@@ -20,14 +29,17 @@ export class BaseTool {
     //
   }
 
-  handleKeyDown(event) {
+  handleKeyDown(_event: KeyboardEvent) {
     //
   }
 }
 
 const MINIMUM_DRAG_DISTANCE = 2;
 
-export async function shouldInitiateDrag(eventStream, initialEvent) {
+export async function shouldInitiateDrag(
+  eventStream: MouseEvent[],
+  initialEvent: MouseEvent
+) {
   // drop events until the pointer moved a minimal distance
   const initialX = initialEvent.pageX;
   const initialY = initialEvent.pageY;

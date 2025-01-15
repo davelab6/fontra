@@ -1,7 +1,7 @@
 // Copied mostly from
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
 
-export function isEqualSet(set1, set2) {
+export function isEqualSet<T>(set1: Set<T>, set2: Set<T>): boolean {
   if (set1.size !== set2.size) {
     return false;
   }
@@ -13,7 +13,7 @@ export function isEqualSet(set1, set2) {
   return true;
 }
 
-export function isSuperset(set, subset) {
+export function isSuperset<T>(set: Set<T>, subset: Set<T>): boolean {
   for (let elem of subset) {
     if (!set.has(elem)) {
       return false;
@@ -22,7 +22,7 @@ export function isSuperset(set, subset) {
   return true;
 }
 
-export function union(setA, setB) {
+export function union<T>(setA: Set<T>, setB: Set<T>): Set<T> {
   let _union = new Set(setA);
   for (let elem of setB) {
     _union.add(elem);
@@ -30,8 +30,8 @@ export function union(setA, setB) {
   return _union;
 }
 
-export function intersection(setA, setB) {
-  let _intersection = new Set();
+export function intersection<T>(setA: Set<T>, setB: Set<T>): Set<T> {
+  let _intersection: Set<T> = new Set();
   for (let elem of setB) {
     if (setA.has(elem)) {
       _intersection.add(elem);
@@ -40,7 +40,7 @@ export function intersection(setA, setB) {
   return _intersection;
 }
 
-export function symmetricDifference(setA, setB) {
+export function symmetricDifference<T>(setA: Set<T>, setB: Set<T>): Set<T> {
   let _difference = new Set(setA);
   for (let elem of setB) {
     if (_difference.has(elem)) {
@@ -52,7 +52,7 @@ export function symmetricDifference(setA, setB) {
   return _difference;
 }
 
-export function difference(setA, setB) {
+export function difference<T>(setA: Set<T>, setB: Set<T>): Set<T> {
   let _difference = new Set(setA);
   for (let elem of setB) {
     _difference.delete(elem);
@@ -60,7 +60,7 @@ export function difference(setA, setB) {
   return _difference;
 }
 
-export function lenientIsEqualSet(set1, set2) {
+export function lenientIsEqualSet<T>(set1: Set<T>, set2: Set<T>): boolean {
   if (set1 === set2) {
     // same object, or both undefined
     return true;
@@ -71,17 +71,20 @@ export function lenientIsEqualSet(set1, set2) {
   return false;
 }
 
-export function updateSet(set, iterable) {
+export function updateSet<T>(set: Set<T>, iterable: T[]) {
   for (const item of iterable) {
     set.add(item);
   }
 }
 
-export function filterSet(set, func) {
+export function filterSet<T>(
+  set: Set<T>,
+  func: (value: T, index: number, array: T[]) => value is T
+): Set<T> {
   return new Set([...set].filter(func));
 }
 
-export function setPopFirst(set) {
+export function setPopFirst<T>(set: Set<T>): T | undefined {
   if (!set.size) {
     return;
   }
