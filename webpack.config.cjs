@@ -28,12 +28,12 @@ function findAllViews() {
 
 const entries = findAllViews();
 
-module.exports = {
+let baseConfig = {
   entry: {},
   output: {
     path: path.resolve(__dirname, "src", "fontra", "client"),
-    filename: "[name].[contenthash].js",
     clean: true,
+    filename: "[name].js",
   },
   mode: "development",
   experiments: {
@@ -83,4 +83,14 @@ module.exports = {
     }),
   ],
   extends: [require.resolve("@fontra/core/webpack.config.cjs")],
+};
+
+module.exports = (env, argv) => {
+  if (argv.mode === "production") {
+    baseConfig.mode = "production";
+    baseConfig.output.filename = "[name].[contenthash].js";
+  } else {
+    baseConfig.devtool = "eval-source-map";
+  }
+  return baseConfig;
 };
