@@ -1393,8 +1393,8 @@ export class EditorController extends ViewController {
         { actionIdentifier: "action.select-next-glyph" },
         { actionIdentifier: "action.select-previous-source" },
         { actionIdentifier: "action.select-next-source" },
-        // { actionIdentifier: "action.select-previous-source-layer" },
-        // { actionIdentifier: "action.select-next-source-layer" },
+        { actionIdentifier: "action.select-previous-source-layer" },
+        { actionIdentifier: "action.select-next-source-layer" },
       ],
     });
 
