@@ -209,7 +209,9 @@ export default class DesignspaceNavigationPanel extends Panel {
     ];
 
     return html.div({ class: "panel" }, [
-      html.div({ class: "panel-section panel-section--flex" }, [this.accordion]),
+      html.div({ class: "panel-section panel-section--flex panel-section--noscroll" }, [
+        this.accordion,
+      ]),
     ]);
   }
 
