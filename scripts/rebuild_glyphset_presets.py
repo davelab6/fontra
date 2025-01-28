@@ -3,6 +3,7 @@
 
 import argparse
 import json
+import pathlib
 from urllib.request import Request, urlopen
 
 AUTH_TOKEN = None
@@ -160,6 +161,18 @@ def getKoeberlinLatinGlyphSets():
             }
         )
 
+    order = ["XS", "S", "M", "L", "XL", "XXL"]
+    glyphSets.sort(
+        key=lambda glyphSet: (
+            (
+                order.index(glyphSet["name"].split()[-1])
+                if glyphSet["name"].split()[-1] in order
+                else len(order) - 1
+            ),
+            glyphSet["name"],
+        )
+    )
+
     return {
         "name": "Koeberlin Latin",
         "sourceURL": sourceURL,
@@ -184,4 +197,10 @@ if __name__ == "__main__":
     AUTH_TOKEN = args.token
 
     collections = collectCollections()
-    print(json.dumps(collections, indent=2))
+
+    repoDir = pathlib.Path(__file__).resolve().parent.parent
+    glyphSetDataPath = (
+        repoDir / "src" / "fontra" / "client" / "data" / "glyphset-presets.json"
+    )
+    with open(glyphSetDataPath, "w") as f:
+        json.dump(collections, f, indent=2)
