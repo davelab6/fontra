@@ -1,4 +1,5 @@
 import { strFromU8, strToU8, unzlibSync, zlibSync } from "../third-party/fflate.js";
+import { getCodePointFromGlyphName } from "./glyph-data.js";
 import { Transform } from "./transform.js";
 
 export function objectsEqual(obj1, obj2) {
