@@ -1344,6 +1344,7 @@ export class EditorController extends ViewController {
     });
   }
 
+  // TODO: Font Guidelines
   async doubleClickedFontGuidelinesCallback(event) {
     console.log("doubleClickedFontGuidelinesCallback", event);
   }
@@ -2196,15 +2197,55 @@ export class EditorController extends ViewController {
       component: componentSelection,
       anchor: anchorSelection,
       guideline: guidelineSelection,
-      backgroundImage: backgroundImageSelection,
       fontGuideline: fontGuidelineSelection,
+      backgroundImage: backgroundImageSelection,
     } = parseSelection(this.sceneController.selection);
     // TODO: Font Guidelines
-    // if (fontGuidelineSelection) {
-    //   for (const guidelineIndex of reversed(fontGuidelineSelection)) {
-    //     XXX
-    //   }
-    // }
+    if (fontGuidelineSelection) {
+      console.log("fontGuidelineSelection: ", fontGuidelineSelection);
+      // Would be great if we can change the font guidelines directly within the editor view.
+
+      // const sortedSourceIdentifiers = this.fontController.getSortedSourceIdentifiers();
+      // const selectedSourceIdentifier = sortedSourceIdentifiers[this.sceneSettings.selectedSourceIndex];
+
+      // const undoLabel = translate("action.delete-selection");
+      // const root = { sources: this.fontController.sources };
+      // const changes = recordChanges(root, (root) => {
+      //   const fontSource = root.sources[selectedSourceIdentifier];
+      //   for (const guidelineIndex of reversed(fontGuidelineSelection)) {
+      //     const guideline = fontSource.guidelines[guidelineIndex];
+      //     if (guideline.locked) {
+      //       // don't delete locked guidelines
+      //       continue;
+      //     }
+      //     fontSource.guidelines.splice(guidelineIndex, 1);
+      //   }
+      // });
+      // console.log("changes.hasChange: ", changes.hasChange);
+      // if (changes.hasChange) {
+      //   // this.postChange(changes.change, changes.rollbackChange, undoLabel);
+      //   const change = changes.change;
+      //   const rollbackChange = changes.rollbackChange;
+      //   // const undoRecord = {
+      //   //   change: change,
+      //   //   rollbackChange: rollbackChange,
+      //   //   info: {
+      //   //     label: undoLabel,
+      //   //   },
+      //   // };
+      //   //this.undoStack.pushUndoRecord(undoRecord);
+
+      //   const error = await this.fontController.editFinal(
+      //     change,
+      //     rollbackChange,
+      //     undoLabel,
+      //     true
+      //   );
+      //   // TODO handle error
+      //   this.fontController.notifyEditListeners("editFinal", this);
+      // }
+    }
+
     await this.sceneController.editLayersAndRecordChanges((layerGlyphs) => {
       for (const layerGlyph of Object.values(layerGlyphs)) {
         if (event.altKey) {
@@ -2238,10 +2279,6 @@ export class EditorController extends ViewController {
             // TODO: don't delete if bg images are locked
             // (even though we shouldn't be able to select them)
             layerGlyph.backgroundImage = undefined;
-          if (fontGuidelineSelection) {
-            for (const guidelineIndex of reversed(fontGuidelineSelection)) {
-              console.log("TODO: delete font guideline: ", guidelineIndex);
-            }
           }
         }
       }
