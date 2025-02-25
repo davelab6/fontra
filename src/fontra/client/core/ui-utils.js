@@ -243,6 +243,7 @@ export const DefaultFormatter = {
   },
 };
 
+// TODO: Move to formatters.js
 export const NumberFormatter = {
   toString: (value) => value.toString(),
   fromString: (value) => {
